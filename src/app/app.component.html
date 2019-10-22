@@ -1,0 +1,31 @@
+<div class="container">
+  <input type="text" [(ngModel)]="origin" (ngModelChange)="onOriginChange($event)">
+  <input type="text" [(ngModel)]="destination" (ngModelChange)="onDestinationChange($event)">
+  <button id="getDirections" (click)="getDirections()">Get Directions</button>
+</div>
+<div class="view">
+  <table>
+    <thead>
+      <tr>
+        <th colspan="4">Distance: {{data?.route?.distance}}m - Duration: {{data?.route?.formattedTime}}</th>
+      </tr>
+
+    </thead>
+    <tbody>
+      <tr *ngFor="let dir of data?.route?.legs[0].maneuvers; let i =index">
+        <td>
+        <img src='{{dir?.iconUrl}}'>-->
+        </td>
+        <td>
+          {{i+1}}
+        </td>
+        <td> 
+         <a href='{{dir?.mapUrl}}' target="_blank">{{dir?.narrative}}</a>
+        </td>
+        <td> 
+           {{dir?.distance}}m 
+         </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
